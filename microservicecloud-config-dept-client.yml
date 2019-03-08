@@ -1,0 +1,81 @@
+﻿spring: 
+    profiles: 
+      active: 
+      - dev
+---
+server: 
+  port: 8001 
+  
+spring: 
+    profiles: dev
+    application: 
+        name: microservicecloud-config-dept-client
+    datasoure: 
+     type: com.alibaba.druid.pool.DruidDataSource
+     driver-class-name: org.gjt.mm.mysql.Driver
+     url: jdbc:mysql://localhost:3308/clouddb01
+     username: root
+     password: root
+     dbcp2: 
+        min-idle: 5
+        initial-size: 5
+        max-total: 5
+        max-wait-millis: 200
+        
+mybatis: 
+    config-location: classpath:mybatis/mybatis.cfg.xml
+    type-aliases-package: com.boco.springcloud.entites
+    mapper-location: 
+    - classpath:mybatis/mapper/**/*.xml
+        
+eureka: 
+    client: #客户端注册进eureka服务列表
+        service-url: 
+            defaultZone: http://eureka7001.com:7001/eureka/
+    instance: 
+        instance-id: dept-8001.com
+        prefer-ip-address: true
+info: 
+  app.name: boco-microservicecloud-springcloudconfig01
+  company.name: www.boco.com
+  build.artifactId: $project.artifactId$
+  build.version: $project.version$
+  
+---
+server:
+ port: 8001
+spring: 
+    profiles: test
+    application: 
+     name: microservicecloud-config-dept-client
+    datasoure: 
+     type: com.alibaba.druid.pool.DruidDataSource
+     driver-class-name: org.gjt.mm.mysql.Driver
+     url: jdbc:mysql://localhost:3308/cloudDB02
+     username: root
+     password: root
+     dbcp2: 
+        min-idle: 5
+        initial-size: 5
+        max-total: 5
+        max-wait-millis: 200
+        
+mybatis: 
+    config-location: classpath:mybatis/mybatis.cfg.xml
+    type-aliases-package: com.boco.springcloud.entites
+    mapper-location: 
+    - classpath:mybatis/mapper/**/*.xml
+    
+eureka: 
+    client: #客户端注册进eureka服务列表
+        service-url: 
+            defaultZone: http://eureka7001.com:7001/eureka
+    instance:
+        instance-id: microservicecloud-dept8002
+        prefer-ip-address: true     #访问路径可以显示IP地址
+    
+info:
+  app.name: boco-microservicecloud
+  company.name: www.boco.com
+  build.artifactId: $project.artifactId$
+  build.version: $project.version$
