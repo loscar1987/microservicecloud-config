@@ -24,7 +24,7 @@ spring:
         
 mybatis: 
     config-location: classpath:mybatis/mybatis.cfg.xml
-    type-aliases-package: com.boco.springcloud.entites
+    type-aliases-package: com.boco.springcloud.entities
     mapper-location: 
     - classpath:mybatis/mapper/**/*.xml
         
